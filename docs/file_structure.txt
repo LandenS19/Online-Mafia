@@ -1,0 +1,114 @@
+mafia-game/
+│
+├── backend/
+├── frontend/
+├── infrastructure/
+└── docs/
+
+backend/
+│
+├── app/
+│   ├── main.py
+│   │
+│   ├── core/
+│   │   ├── config.py
+│   │   ├── security.py
+│   │   └── websocket_manager.py
+│   │
+│   ├── models/
+│   │   ├── player.py
+│   │   ├── role.py
+│   │   ├── game.py
+│   │   ├── vote.py
+│   │   └── action.py
+│   │
+│   ├── schemas/
+│   │   ├── player_schema.py
+│   │   ├── role_schema.py
+│   │   ├── game_schema.py
+│   │   └── vote_schema.py
+│   │
+│   ├── services/
+│   │   ├── game_service.py
+│   │   ├── role_service.py
+│   │   ├── voting_service.py
+│   │   ├── night_resolution_service.py
+│   │   └── win_condition_service.py
+│   │
+│   ├── api/
+│   │   ├── routes/
+│   │   │   ├── auth.py
+│   │   │   ├── lobby.py
+│   │   │   ├── host.py
+│   │   │   ├── voting.py
+│   │   │   ├── roles.py
+│   │   │   └── websocket.py
+│   │
+│   ├── database/
+│   │   ├── base.py
+│   │   ├── session.py
+│   │   └── migrations/
+│   │
+│   └── state_machine/
+│       ├── phase_manager.py
+│       └── game_state.py
+│
+├── tests/
+│   ├── test_voting.py
+│   ├── test_roles.py
+│   └── test_win_conditions.py
+│
+├── requirements.txt
+└── .env
+
+
+frontend/
+│
+├── public/
+│
+├── src/
+│   ├── api/
+│   │   ├── client.js
+│   │   └── websocket.js
+│   │
+│   ├── pages/
+│   │   ├── JoinPage.jsx
+│   │   ├── LobbyPage.jsx
+│   │   ├── HostControlPage.jsx
+│   │   ├── HostDisplayPage.jsx
+│   │   ├── PlayerRolePage.jsx
+│   │   ├── VotingPage.jsx
+│   │   ├── NightActionPage.jsx
+│   │   ├── DeathPage.jsx
+│   │   └── GameEndPage.jsx
+│   │
+│   ├── components/
+│   │   ├── PlayerList.jsx
+│   │   ├── RoleInfoPanel.jsx
+│   │   ├── VoteCard.jsx
+│   │   ├── Timer.jsx
+│   │   └── PhaseBanner.jsx
+│   │
+│   ├── context/
+│   │   ├── GameContext.jsx
+│   │   └── AuthContext.jsx
+│   │
+│   ├── hooks/
+│   │   ├── useGameState.js
+│   │   └── useWebSocket.js
+│   │
+│   └── App.jsx
+│
+├── package.json
+└── .env
+
+infrastructure/
+│
+├── docker/
+│   ├── Dockerfile.backend
+│   ├── Dockerfile.frontend
+│   └── docker-compose.yml
+│
+└── deployment/
+    ├── production.env
+    └── nginx.conf
