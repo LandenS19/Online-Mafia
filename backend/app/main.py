@@ -1,13 +1,24 @@
-from typing import Annotated
+from typing import Any
 
-from fastapi import FastAPI, Query
+from fastapi import FastAPI
+from pydantic import BaseModel, EmailStr
 
 app = FastAPI()
 
-@app.get("/items/")
-async def read_items(
-    q: Annotated[str | None, Query(min_length=3)] = "fixedquery"):
-    results = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
-    if q:
-        results.update({"q": q})
-    return results
+
+class UserIn(BaseModel):
+    username: str
+    password: str
+    email: EmailStr
+    full_name: str | None = None
+
+
+class UserOut(BaseModel):
+    username: str
+    email: EmailStr
+    full_name: str | None = None
+
+
+@app.post("/user/", response_model=UserOut)
+async def create_user(user: UserIn) -> Any:
+    return user
