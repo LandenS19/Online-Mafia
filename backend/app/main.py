@@ -1,24 +1,14 @@
-from typing import Any
-
-from fastapi import FastAPI
-from pydantic import BaseModel, EmailStr
+from typing import Annotated
+from fastapi import Body, FastAPI
+from .api.routes import players, host
 
 app = FastAPI()
+app.include_router(players.router)
+app.include_router(host.router)
+
+@app.get("/")
+async def root():
+    return {"message": "Welcome to the Main Page!"}
 
 
-class UserIn(BaseModel):
-    username: str
-    password: str
-    email: EmailStr
-    full_name: str | None = None
 
-
-class UserOut(BaseModel):
-    username: str
-    email: EmailStr
-    full_name: str | None = None
-
-
-@app.post("/user/", response_model=UserOut)
-async def create_user(user: UserIn) -> Any:
-    return user
