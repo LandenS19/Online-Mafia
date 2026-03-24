@@ -21,3 +21,9 @@ def create_game(host_username: str, game: CreateGame) -> Game:
     public_game_list.append(game)
 
     return g
+
+def start_game(player: Player, game: Game):
+    if player != game.host:
+        return {"error": "Only the host can start the game 2"}
+    game.status = "started"
+    return {"message": f"Game {game.game_id} started"}

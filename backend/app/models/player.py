@@ -14,4 +14,8 @@ class Player(BaseModel):
     game_id : int | None = None
     is_host : bool = False
 
+class StartGameRequest(BaseModel):
+    user_id: str
+    game_id: int
+
 player_list : list[Player]= []
